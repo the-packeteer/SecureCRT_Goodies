@@ -1,5 +1,0 @@
-sub main
-' object.clear
-crt.CommandWindow.SendCharactersImmediately
-crt.CommandWindow.SendToAllSessions
-end sub
