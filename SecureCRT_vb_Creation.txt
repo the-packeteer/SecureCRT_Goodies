@@ -1,0 +1,77 @@
+'----------------------------------------------------------------------------------------------------------------------------
+'VB Script for commands on the junos platform
+
+# $language = "VBScript"
+# $interface = "1.0"
+
+Sub Main
+ Dim pass
+        pass = crt.Dialog.Prompt("Enter your password:", "Logon Script", "", True)
+        If pass = "" Then
+            ' User clicked Cancel button
+        Else
+            ' User added data
+        End If
+
+  crt.Screen.Send "ssh {CBO_DEVICE_1}" & VbCr
+  crt.Screen.WaitForString "password: " 'this is the prompt in junos for password entry
+  crt.Sleep 100 'pauses script for 100 ms
+  crt.Screen.Send pass & VbCr
+  crt.Screen.WaitForString "> "'this is the prompt for junos
+  crt.Sleep 100
+
+'This section will be be copy/pasted for each command entered
+'Begin of Line 
+  crt.Screen.Send "##Description of command that will be entered##" & VbCr
+  crt.Screen.WaitForString "> "
+  crt.Sleep 100
+  crt.Screen.Send "command (with variables, not values)" & VbCr
+  crt.Screen.WaitForString "> "
+  crt.Sleep 100
+'End of Line
+
+  crt.Screen.Send "##Completed Pre-Checks on {CBO_DEVICE_1}##" & VbCr
+  crt.Screen.WaitForString "> "
+  crt.Sleep 100
+  crt.Screen.Send "exit" & VbCr
+  crt.Screen.WaitForString "$ " 'this is the prompt in Bastion
+  crt.Sleep 100
+end Sub
+'----------------------------------------------------------------------------------------------------------------------------
+'VB Script for commands on the IOS(XR) platform
+
+# $language = "VBScript"
+# $interface = "1.0"
+
+Sub Main
+ Dim pass
+        pass = crt.Dialog.Prompt("Enter your password:", "Logon Script", "", True)
+        If pass = "" Then
+            ' User clicked Cancel button
+        Else
+            ' User added data
+        End If
+
+  crt.Screen.Send "ssh {CBO_DEVICE_1}" & VbCr
+  crt.Screen.WaitForString "password: " 'this is the prompt in IOS(XR) for password entry
+  crt.Sleep 100 'pauses script for 100 ms
+  crt.Screen.Send pass & VbCr
+
+'This section will be be copy/pasted for each command entered
+'Begin of Line 
+  crt.Screen.Send "!!Description of command that will be entered!!" & VbCr
+  crt.Screen.WaitForString "#"
+  crt.Sleep 100
+  crt.Screen.Send "command (with variables, not values)" & VbCr
+  crt.Screen.WaitForString "#"
+  crt.Sleep 100
+'End of Line
+
+crt.Screen.Send "!!Completed Pre-Checks on {CBO_DEVICE_1}!!" & VbCr
+  crt.Screen.WaitForString "#"
+  crt.Sleep 100
+  crt.Screen.Send "exit" & VbCr
+  crt.Screen.WaitForString "$ " 'this is the prompt in Bastion
+  crt.Sleep 100
+end Sub
+'----------------------------------------------------------------------------------------------------------------------------
